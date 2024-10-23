@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shahram Traders - Premium Mobile Devices & Accessories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --accent-color: #ffc107;
+      --background-color: #f8f9fa;
+      --text-color: #212529;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    h1, h2 {
+      font-weight: 700;
+    }
+
+    header {
+      background-image: url('shop-background.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .btn-warning {
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: var(--secondary-color);
+      color: #ffffff;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        min-height: 100vh;
+      }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .rotate-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .rotate-icon:hover {
+      transform: rotate(360deg);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-icon:hover {
+      transform: rotate(360deg);
+    }
+
+    /* New styles for the navigation bar */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-color);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    /* Animation for navbar on scroll */
+    .navbar-scrolled {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Professional animation for navbar links */
+    @keyframes navLinkFade {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .navbar-nav .nav-item {
+      opacity: 0;
+      animation: navLinkFade 0.5s ease forwards;
+    }
+
+    .navbar-nav .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .navbar-nav .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .navbar-nav .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .navbar-nav .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .navbar-nav .nav-item:nth-child(5) { animation-delay: 0.5s; }
+    .navbar-nav .nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+    /* New styles for underline animation in header */
+    .animated-underline {
+      position: relative;
+      display: inline-block;
+    }
+
+    .animated-underline::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent-color);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .animated-underline:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Shahram Traders</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#products">Mobile Phones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#accessories">Accessories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Why Choose Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#customer-care">Customer Care</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#location">Visit Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header class="text-white text-center">
+    <div class="content">
+      <h1 class="display-1 mb-4 animate-pulse"><span class="animated-underline">Welcome to Shahram Traders</span></h1>
+      <p class="lead mb-4"><span class="animated-underline">Your Premier Destination for Cutting-Edge Mobile Technology</span></p>
+      <p class="mb-5"><span class="animated-underline">Experience the Future of Communication with Our Premium Devices and Accessories</span></p>
+      <a href="#products" class="btn btn-warning btn-lg mt-3">Explore Our Collection</a>
+    </div>
+  </header>
+
+  <!-- Products Section -->
+  <section id="products" class="section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5 fade-in">Our Featured Products</h2>
+      
+      <!-- Mobile Products -->
+      <h3 class="text-center mb-4">Mobile Phones</h3>
+      <div class="mb-4">
+        <h4>Select Price Range:</h4>
+        <select class="form-select" id="priceRange">
+          <option value="20-30">20,000 - 30,000 PKR</option>
+          <option value="40-80">40,000 - 80,000 PKR</option>
+          <option value="100-200">100,000 - 200,000 PKR</option>
+          <option value="200+">200,000+ PKR</option>
+        </select>
+      </div>
+      <div class="row" id="mobileProducts">
+        <!-- Mobile products will be dynamically added here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Accessories Section -->
+  <section id="accessories" class="section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5 fade-in">Accessories</h2>
+      <div class="row" id="accessoriesContainer">
+        <div class="col-md-3 fade-in">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Mobile Covers</h5>
+              <p class="card-text">Protect your device with our stylish covers.</p>
+              <a href="#" class="btn btn-primary view-accessories" data-category="covers">View Options</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Screen Protectors</h5>
+              <p class="card-text">Keep your screen safe from scratches.</p>
+              <a href="#" class="btn btn-primary view-accessories" data-category="protectors">View Options</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Headphones & AirPods</h5>
+              <p class="card-text">Enhance your audio experience.</p>
+              <a href="#" class="btn btn-primary view-accessories" data-category="audio">View Options</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Chargers & Cables</h5>
+              <p class="card-text">Keep your devices powered up.</p>
+              <a href="#" class="btn btn-primary view-accessories" data-category="power">View Options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="bg-light section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5 fade-in">Why Choose Shahram Traders</h2>
+      <div class="row">
+        <div class="col-md-3 fade-in">
+          <div class="text-center">
+            <i class="fas fa-certificate feature-icon"></i>
+            <h4>Authentic Products</h4>
+            <p>100% genuine products with manufacturer warranty</p>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="text-center">
+            <i class="fas fa-truck feature-icon"></i>
+            <h4>Free Express Delivery</h4>
+            <p>Free same-day delivery for orders above Rs. 50,000</p>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="text-center">
+            <i class="fas fa-exchange-alt feature-icon"></i>
+            <h4>Easy Returns</h4>
+            <p>Hassle-free 15-day return policy on all products</p>
+          </div>
+        </div>
+        <div class="col-md-3 fade-in">
+          <div class="text-center">
+            <i class="fas fa-headset feature-icon"></i>
+            <h4>Expert Support</h4>
+            <p>Dedicated team of mobile experts to assist you</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Care Section -->
+  <section id="customer-care" class="section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5">Exceptional Customer Care</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">24/7 Support</h5>
+              <p class="card-text">Our dedicated team is available round the clock to assist you with any queries or issues.</p>
+              <a href="#" class="btn btn-primary">Contact Support</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">VIP Service</h5>
+              <p class="card-text">Enjoy personalized shopping experience with our VIP customer service for premium devices.</p>
+              <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Location -->
+  <section id="location" class="section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5 fade-in">Visit Our Store</h2>
+      <div class="row">
+        <div class="col-md-6 mx-auto fade-in">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Shahram Traders and Mobile Zone</h5>
+              <p class="card-text">G block mobile market Vehrai </p>
+              <p>Open Mon-Sat: 9AM - 8PM, Fri: 9AM- 12PM</p>
+              <a href="#" class="btn btn-primary">Get Directions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5 fade-in">Get in Touch</h2>
+      <div class="row">
+        <div class="col-md-6 fade-in">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+        <div class="col-md-6 fade-in">
+          <h4>Contact Information</h4>
+          <p><strong>Phone:</strong> 03017948107</p>
+          <p><strong>Email:</strong> shahramtraders333@gmail.com</p>
+          <p><strong>WhatsApp:</strong> 03085901850</p>
+          <p><strong>Store Hours:</strong></p>
+          <p>Monday - Saturday: 9AM - 8PM</p>
+          <p>Friday: 9AM - 12PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-white text-center py-4">
+    <div class="container">
+      <p>© 2024 Shahram Traders. All Rights Reserved.</p>
+      <div class="mt-3">
+        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fade in header content
+      setTimeout(() => {
+        document.querySelector('header .content').style.opacity = '1';
+        document.querySelector('header .content').style.transform = 'translateY(0)';
+      }, 300);
+
+      // Fade in elements as they come into view
+      const fadeElems = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      fadeElems.forEach(elem => observer.observe(elem));
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Mobile products filter
+      const priceRange = document.getElementById('priceRange');
+      const mobileProducts = document.getElementById('mobileProducts');
+
+      const products = [
+        { name: 'Redmi Note 10', price: 25000, range: '20-30' },
+        { name: 'Realme 8', price: 28000, range: '20-30' },
+        { name: 'Samsung Galaxy A12', price: 23000, range: '20-30' },
+        { name: 'Oppo A54', price: 27000, range: '20-30' },
+        { name: 'Vivo Y20', price: 24000, range: '20-30' },
+        { name: 'Infinix Hot 10', price: 22000, range: '20-30' },
+        { name: 'Samsung Galaxy A52', price: 60000, range: '40-80' },
+        { name: 'Xiaomi Mi 11 Lite', price: 55000, range: '40-80' },
+        { name: 'OnePlus Nord CE', price: 70000, range: '40-80' },
+        { name: 'Oppo Reno 5', price: 65000, range: '40-80' },
+        { name: 'Vivo V21', price: 58000, range: '40-80' },
+        { name: 'Realme GT Master', price: 72000, range: '40-80' },
+        { name: 'iPhone 12', price: 180000, range: '100-200' },
+        { name: 'Samsung Galaxy S21', price: 160000, range: '100-200' },
+        { name: 'OnePlus 9', price: 140000, range: '100-200' },
+        { name: 'Xiaomi Mi 11', price: 130000, range: '100-200' },
+        { name: 'Oppo Find X3', price: 170000, range: '100-200' },
+        { name: 'Vivo X60 Pro', price: 150000, range: '100-200' },
+        { name: 'iPhone 13 Pro Max', price: 280000, range: '200+' },
+        { name: 'Samsung Galaxy Z Fold 3', price: 300000, range: '200+' },
+        { name: 'Sony Xperia 1 III', price: 230000, range: '200+' },
+        { name: 'Huawei Mate 40 Pro', price: 210000, range: '200+' },
+        { name: 'Asus ROG Phone 5', price: 220000, range: '200+' },
+        { name: 'Google Pixel 6 Pro', price: 240000, range: '200+' }
+      ];
+
+      function displayProducts(range) {
+        mobileProducts.innerHTML = '';
+        products.filter(product => product.range === range).forEach(product => {
+          const productHTML = `
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${product.name}</h5>
+                  <p class="card-text">Price: Rs. ${product.price}</p>
+                  <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+          `;
+          mobileProducts.innerHTML += productHTML;
+        });
+      }
+
+      priceRange.addEventListener('change', (e) => {
+        displayProducts(e.target.value);
+      });
+
+      // Initial display
+      displayProducts('20-30');
+
+      // Accessories
+      const accessories = {
+        covers: [
+          { name: 'Silicone Case', price: 1500 },
+          { name: 'Leather Case', price: 2500 },
+          { name: 'Clear Case', price: 1000 },
+          { name: 'Rugged Case', price: 3000 },
+          { name: 'Wallet Case', price: 2000 },
+          { name: 'Flip Cover', price: 1800 }
+        ],
+        protectors: [
+          { name: 'Tempered Glass', price: 1000 },
+          { name: 'Privacy Screen', price: 1500 },
+          { name: 'Anti-Glare Film', price: 800 },
+          { name: 'Full Coverage Protector', price: 2000 },
+          { name: 'Nano Liquid Screen Guard', price: 2500 },
+          { name: 'Ceramic Screen Protector', price: 3000 }
+        ],
+        audio: [
+          { name: 'Wireless Earbuds', price: 5000 },
+          { name: 'Over-Ear Headphones', price: 8000 },
+          { name: 'Sport Earphones', price: 3000 },
+          { name: 'Noise-Cancelling Headphones', price: 15000 },
+          { name: 'True Wireless Earphones', price: 10000 },
+          { name: 'Bluetooth Speaker', price: 6000 }
+        ],
+        power: [
+          { name: 'Fast Charger', price: 2000 },
+          { name: 'Wireless Charger', price: 3000 },
+          { name: 'Power Bank', price: 4000 },
+          { name: 'Car Charger', price: 1500 },
+          { name: 'Multi-Port Charging Station', price: 5000 },
+          { name: 'Solar Power Bank', price: 6000 }
+        ]
+      };
+
+      const accessoriesContainer = document.getElementById('accessoriesContainer');
+
+      document.querySelectorAll('.view-accessories').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const category = this.dataset.category;
+          displayAccessories(category);
+        });
+      });
+
+      function displayAccessories(category) {
+        const accessoryItems = accessories[category].map(item => `
+          <div class="col-md-3 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${item.name}</h5>
+                <p class="card-text">Price: Rs. ${item.price}</p>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        accessoriesContainer.innerHTML = `
+          <div class="col-12 mb-4">
+            <button class="btn btn-secondary" id="backToCategories">Back to Categories</button>
+          </div>
+          ${accessoryItems}
+        `;
+
+        document.getElementById('backToCategories').addEventListener('click', () => {
+          location.reload();
+        });
+      }
+
+      // Navbar animation on scroll
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('navbar-scrolled');
+        } else {
+          navbar.classList.remove('navbar-scrolled');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
